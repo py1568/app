@@ -11,7 +11,37 @@
       <el-col
         :span="15"
         class="center">
-
+        <div class="wrapper">
+          <el-input
+            v-model="search"
+            @focus="focus"
+            @blur="blur"
+            @input="input"
+            placeholder="搜索商家或地点"/>
+          <button class="el-button el-button--primary"><i class="el-icon-search"/></button>
+          <dl
+            v-if="isHotPlace"
+            class="hotPlace">
+            <dt>热门搜索</dt>
+            <dd>
+              <a v-for="(item, index) in hotPlace" :key="index">
+                {{item}}
+              </a>
+            </dd>
+          </dl>
+          <dl
+            v-if="isSearchList"
+            class="searchList">
+            <dd>
+              <a v-for="(item, index) in searchList" :key="index">
+                {{item}}
+              </a>
+            </dd>
+          </dl>
+        </div>
+        <p class="suggest">
+          <a >name</a>
+        </p>
         <ul class="nav">
           <li><nuxt-link
             to="/"
@@ -44,24 +74,41 @@
 </template>
 
 <script>
-import _ from 'lodash'
 export default {
   data(){
     return {
       search:'',
       isFocus:false,
-      hotPlace:[],
-      searchList:[]
+      hotPlace:['火锅','火锅','火锅','火锅'],
+      searchList:['故宫']
     }
   },
   computed:{
-
+    isHotPlace: function(){
+      return this.isFocus && !this.search
+    },
+    isSearchList: function(){
+      return this.isFocus && this.search
+    }
   },
   methods:{
-
+    focus: function(){
+      this.isFocus = true
+    },
+    blur: function(){
+      let self = this
+      setTimeout(function(){
+        
+        self.isFocus = false
+      }, 200)
+    },
+    input: function(){
+      console.log('input')
+    }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+
 </style>
