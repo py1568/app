@@ -14,11 +14,11 @@
 
 <script>
   import MyHeader from '@/components/public/header/index.vue'
-  import MyFooter from '@/components/public/footer/index.vue'
+  // import MyFooter from '@/components/public/footer/index.vue'
   export default {
     components:{
       MyHeader,
-      MyFooter
+      // MyFooter
     }
   }
 </script>
